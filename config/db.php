@@ -31,4 +31,24 @@ class Database
             throw new Exception($e->getMessage());
         }
     }
+
+    public function userExist($login, $password): array|bool
+    {
+        try {
+            $query = 'SELECT * FROM utilisateurs WHERE login = ? and password = MD5(?)';
+            $req = $this->connexion->prepare($query);
+            $req->execute([$login, $password]);
+            $result = $req->fetch(PDO::FETCH_ASSOC);
+
+            if ($result) {
+                return $result;
+            } else {
+                return false;
+            }
+        } catch (Exception $e) {
+            echo "Erreur : " . $e->getMessage();
+            return false;
+        }
+    }
 }
+

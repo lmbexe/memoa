@@ -1,11 +1,11 @@
 <script setup>
-fetch("http://localhost/noteApp/appnote/api/test_connexion.php")
-  .then(res => res.text())
-  .then(console.log)
+import loginForm from '../src/components/loginForm.vue'
+
 </script>
 
 <template>
-hello world
+<loginForm></loginForm>
+
 
 </template>
 
